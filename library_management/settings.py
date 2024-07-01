@@ -1,7 +1,6 @@
 from pathlib import Path
 import environ
 import dj_database_url
-import psycopg2
 
 
 
