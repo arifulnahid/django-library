@@ -1,0 +1,133 @@
+{% extends 'base.html' %} {% block content %}
+<div
+  class="my-4 flex bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+>
+  <a href="#" class="w-1/2">
+    <img class="rounded-t-lg" src="{{book.image.url}}" alt="" />
+  </a>
+  <div class="p-5">
+    <a href="#">
+      <h5
+        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+      >
+        {{book.title}}
+      </h5>
+    </a>
+    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+      {{book.description}}
+    </p>
+    <div class="py-4 ">
+      <span class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Price : {{book.price}}</span>
+      <a href="{% url 'borrow' book.id %}" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Borrow Now</a>
+    </div>
+  </div>
+</div>
+
+<div
+  class="my-4 bg-white dark:bg-gray-800 dark:border-gray-700"
+>
+<form method="post">
+  {% csrf_token %}
+  {{form}}
+  <input
+      class="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      type="submit"
+      value="Submit"
+    />
+</form>
+  
+</div>
+
+<div
+  class="my-4 px-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+>
+  {% for rating in ratings %}
+
+  <article>
+    <div class="flex items-center mb-4">
+      <img
+        class="w-10 h-10 me-4 rounded-full"
+        src="https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg"
+        alt=""
+      />
+      <div class="font-medium dark:text-white">
+        <p>
+          {{rating.User.username}}
+          <time
+            datetime="2014-08-16 19:00"
+            class="block text-sm text-gray-500 dark:text-gray-400"
+            >{{rating.date}}</time
+          >
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
+      <svg
+        class="w-4 h-4 {% if rating.rating >= 1 %} text-yellow-300 {% else %} text-gray-300 {% endif %}"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 22 20"
+      >
+        <path
+          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+        />
+      </svg>
+      <svg
+        class="w-4 h-4 {% if rating.rating >= 2 %} text-yellow-300 {% else %} text-gray-300 {% endif %}"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 22 20"
+      >
+        <path
+          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+        />
+      </svg>
+      <svg
+        class="w-4 h-4 {% if rating.rating >= 3 %} text-yellow-300 {% else %} text-gray-300 {% endif %}"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 22 20"
+      >
+        <path
+          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+        />
+      </svg>
+      <svg
+        class="w-4 h-4 {% if rating.rating >= 4 %} text-yellow-300 {% else %} text-gray-300 {% endif %}"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 22 20"
+      >
+        <path
+          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+        />
+      </svg>
+      <svg
+        class="w-4 h-4 {% if rating.rating == 5 %} text-yellow-300 {% else %} text-gray-300 {% endif %}"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 22 20"
+      >
+        <path
+          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+        />
+      </svg>
+      <h3 class="ms-2 text-sm font-semibold text-gray-900 dark:text-white">
+        {{rating.rating}}
+      </h3>
+    </div>
+    <footer class="mb-5 text-sm text-gray-500 dark:text-gray-400">
+      <p>{{rating.comment}}</p>
+    </footer>
+  </article>
+  <hr>
+
+  {% endfor %}
+</div>
+
+{% endblock content %}

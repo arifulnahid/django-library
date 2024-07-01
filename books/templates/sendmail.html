@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmation - [Your Company Name]</title>
+  <style>
+    /* You can add your own styles here */
+    body {
+      font-family: sans-serif;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Thank you for your order!</h1>
+  <p>This email confirms your order #{{borrow.id}} from Library.</p>
+  <h2>Order Details</h2>
+  <table>
+    <tr>
+      <th>Order Number</th>
+      <td>{{borrow.id}}</td>
+    </tr>
+    <tr>
+      <th>Order Date</th>
+      <td>{{borrow.date}}</td>
+    </tr>
+    <tr>
+      <th>Payment Method</th>
+      <td>Online</td>
+    </tr>
+  </table>
+
+  <h2>Order Items</h2>
+  <table>
+    <tr>
+      <th>{{book.title}}</th>
+      <th>1</th>
+      <th>{{book.price}}</th>
+    </tr>
+    </table>
+
+  <p>Thank you again for your order!</p>
+
+  <p>Sincerely,</p>
+  <p>Library</p>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% extends 'base.html' %} {% block content %}
+<div class="">
+  <div class="flex items-center justify-center py-4 md:py-8 flex-wrap">
+    <a
+      href="{% url 'books' %}"
+      class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800"
+    >
+      All categories
+  </a>
+    
+    {% for category in categories %}
+    <a
+      href="{% url 'books' %}?category={{ category.id }}"
+      class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800"
+    >
+      {{category.name}}
+  </a>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+<div class="grid grid-cols-4 grid-flow-row gap-4">
+  {% for book in books %}
+  <div
+    class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+  >
+    <a href="{% url 'book' book.id %}">
+      <img
+        class="p-8 rounded-t-lg"
+        src="{{ book.image.url }}"
+        alt="product image"
+      />
+    </a>
+    <div class="px-5 pb-5">
+      <a href="#">
+        <h5
+          class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white"
+        >
+          {{book.title}}
+        </h5>
+      </a>
+      <div class="static bottom-0">
+        <div class="flex items-center justify-between">
+          <span class="text-3xl font-bold text-gray-900 dark:text-white"
+            >Price: ${{book.price}}</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+  
+{% endblock content %}
